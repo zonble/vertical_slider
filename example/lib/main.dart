@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Vertical Slider Demo',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: MyHomePage(title: 'Vertical Slider Demo Home Page'),
+      home: MyHomePage(title: 'Vertical Slider Demo'),
     );
   }
 }
@@ -24,19 +24,20 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: Text(widget.title)),
-        body: Container(
-            color: Colors.black,
-            child: Center(
-                child: Container(
-                    width: 100,
-                    height: 300,
-                    child: VerticalSlider(
-                      backgroundColor: Colors.white38,
-                      foregroundColor: Colors.white,
-                      value: 0.5,
-                    )))));
-  }
+  Widget build(BuildContext context) => Scaffold(
+      appBar: AppBar(title: Text(widget.title)),
+      body: Container(
+          color: Colors.black,
+          child: Center(
+              child: Container(
+                  width: 100,
+                  height: 300,
+                  child: VerticalSlider(
+                    backgroundColor: Colors.white38,
+                    foregroundColor: Colors.white,
+                    value: 0.5,
+                    onValueChanged: (value) {
+                      print(value);
+                    },
+                  )))));
 }
