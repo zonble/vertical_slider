@@ -4,6 +4,9 @@ typedef VerticalSliderCallback(double);
 
 /// A vertical slider widget.
 class VerticalSlider extends StatefulWidget {
+  /// Label of the slider.
+  final String label;
+
   /// Width of the slider.
   final double width;
 
@@ -30,6 +33,7 @@ class VerticalSlider extends StatefulWidget {
 
   VerticalSlider({
     Key key,
+    this.label,
     this.width = double.infinity,
     this.height = double.infinity,
     this.foregroundColor,
@@ -82,31 +86,35 @@ class _VerticalSliderState extends State<VerticalSlider>
 
     _controller.animateTo(_value, curve: widget.curve ?? Curves.linear);
 
-    return Container(
-        width: widget.width,
-        height: widget.height,
-        child: ClipRRect(
-            borderRadius: BorderRadius.all(Radius.elliptical(20, 16)),
-            child: LayoutBuilder(builder: (context, layout) {
-              return GestureDetector(
-                  onVerticalDragStart: (details) => setState(() =>
-                      _value = _computeValue(layout, details.localPosition)),
-                  onVerticalDragUpdate: (details) => setState(() =>
-                      _value = _computeValue(layout, details.localPosition)),
-                  onVerticalDragEnd: (details) {
-                    if (widget.onValueChanged != null)
-                      widget.onValueChanged(_value);
-                  },
-                  child: Stack(children: [
-                    Container(color: backgroundColor),
-                    Align(
-                        alignment: Alignment(0, 1),
-                        child: AnimatedBuilder(
-                            animation: _controller,
-                            builder: (context, child) => Container(
-                                height: layout.maxHeight * _controller.value,
-                                color: foregroundColor)))
-                  ]));
-            })));
+    return Semantics(
+      label: widget.label ?? 'Vertical Slider',
+      value: '$_value',
+      child: Container(
+          width: widget.width,
+          height: widget.height,
+          child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.elliptical(20, 16)),
+              child: LayoutBuilder(builder: (context, layout) {
+                return GestureDetector(
+                    onVerticalDragStart: (details) => setState(() =>
+                        _value = _computeValue(layout, details.localPosition)),
+                    onVerticalDragUpdate: (details) => setState(() =>
+                        _value = _computeValue(layout, details.localPosition)),
+                    onVerticalDragEnd: (details) {
+                      if (widget.onValueChanged != null)
+                        widget.onValueChanged(_value);
+                    },
+                    child: Stack(children: [
+                      Container(color: backgroundColor),
+                      Align(
+                          alignment: Alignment(0, 1),
+                          child: AnimatedBuilder(
+                              animation: _controller,
+                              builder: (context, child) => Container(
+                                  height: layout.maxHeight * _controller.value,
+                                  color: foregroundColor)))
+                    ]));
+              }))),
+    );
   }
 }
