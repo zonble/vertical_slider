@@ -1,7 +1,6 @@
 name: vertical_slider
-description: A new Flutter project.
-version: 0.0.1
-author:
+description: A vertical slider widget
+version: 0.1.0
 homepage:
 
 environment:
@@ -16,10 +15,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter.
 flutter:
 
   # To add assets to your package, add an assets section, like this:

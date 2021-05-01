@@ -1,6 +1,6 @@
 # vertical_slider
 
-A new Flutter project.
+A vertical slider Flutter widget.
 
 ## Getting Started
 
