@@ -3,6 +3,8 @@
 A vertical slider Flutter widget, that helps to present and adjust a value from
 0.0 to 1.0.
 
+I did this just for fun.
+
 ## Example
 
 Here comes a simple example:
